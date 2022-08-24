@@ -1,0 +1,33 @@
+{
+  "name": "twitter",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/plugin-transform-runtime": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "5.4.3",
+    "antd": "^4.22.7",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "^6.2.2",
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.5",
+    "webpack-dev-server": "^3"
+  },
+  "presets": [
+    "@babel/preset-env"
+  ]
+}
