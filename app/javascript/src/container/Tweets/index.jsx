@@ -101,7 +101,7 @@ const Tweets = () => {
               <img
                 src='https://pbs.twimg.com/profile_images/1012717264108318722/9lP-d2yM_400x400.jpg'
                 alt=''
-                className='w-12 mr-3.5 rounded-[100px]'
+                className='w-12 mr-3.5 rounded-full'
               />
               <div>
                 <span className='font-bold'>Steve Schoger</span> <span className='font-normal text[#657786] ml-1' >@Steve Schoger</span>
