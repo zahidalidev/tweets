@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-import Tweets from './Tweets'
-import SubTweets from './SubTweets'
-import Login from './Login'
+import Tweets from './container/Tweets'
+import SubTweets from './container/SubTweets'
+import Login from './container/Login'
 
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
