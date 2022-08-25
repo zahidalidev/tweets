@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import loginImg from '../../assets/images/lohp_en_1302x955.png'
 import Button from '../../components/Button'
 import ModalForm from '../../components/ModalForm'
+import { loginValidate, signUpValidate } from '../../utils/validations'
 
 const Login = (props) => {
   const [signUpModa, showSignUpModal] = useState(false)
@@ -38,6 +40,12 @@ const Login = (props) => {
       value: '',
       type: 'password',
     },
+    {
+      id: '1',
+      placeholder: 'Confirm password',
+      value: '',
+      type: 'password',
+    },
   ])
 
   const handleChangeSignUp = (value, index) => {
@@ -53,10 +61,18 @@ const Login = (props) => {
   }
 
   const handleSignUp = () => {
+    const error = signUpValidate(signUpFields)
+    if(error){
+      return toast.error(error)
+    }
     navigate('/tweets/home')
   }
 
   const handleLogin = () => {
+    const error = loginValidate(signUpFields)
+    if(error){
+      return toast.error(error)
+    }
     navigate('/tweets/home')
   }
 
