@@ -2,8 +2,7 @@ import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Tweets from './container/Tweets'
-import SubTweets from './container/SubTweets'
-import Login from './container/Login'
+import Auth from './container/Auth'
 
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
@@ -13,8 +12,7 @@ const App = () => {
     <Routes>
       <Route path='tweets'>
         <Route path='home' element={<Tweets />} />
-        <Route path='login' element={<Login />} />
-        <Route path='subtweets' element={<SubTweets />} />
+        <Route path='auth' element={<Auth />} />
       </Route>
       <Route path='*' element={<Tweets />} />
     </Routes>

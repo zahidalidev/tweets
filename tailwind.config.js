@@ -23,7 +23,8 @@ module.exports = {
         'silver': '#ecebff',
         'bubble-gum': '#ff77e9',
         'bermuda': '#78dcca',
-        'sky': 'rgb(29, 155, 240)'
+        'sky': '#1d9bf0',
+        'sky-dark': '#056db3',
       },
     },
   },

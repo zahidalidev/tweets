@@ -4,8 +4,9 @@ const Button = ({ name, background, textColor, onSubmit }) => {
   return (
     <div
       onClick={onSubmit}
-      className='flex rounded-full justify-center w-80 h-12 items-center bg-sky-500 border border-inherit cursor-pointer hover:bg-sky-700'
-      style={{ backgroundColor: background && 'rgb(14 165 233)' }}
+      className={`flex rounded-full justify-center w-80 h-12 items-center ${
+        background && 'bg-sky hover:bg-sky-dark'
+      } border border-inherit cursor-pointer`}
     >
       <p className={`${textColor} font-bold`}>{name}</p>
     </div>
