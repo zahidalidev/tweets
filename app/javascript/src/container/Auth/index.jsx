@@ -41,7 +41,7 @@ const Login = (props) => {
       type: 'password',
     },
     {
-      id: '1',
+      id: '2',
       placeholder: 'Confirm password',
       value: '',
       type: 'password',
