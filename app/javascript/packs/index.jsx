@@ -4,13 +4,12 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-
 import { BrowserRouter, Route } from 'react-router-dom'
 
 import App from '../src/components/App'
+import "./index.css"
 
 const root = ReactDOM.createRoot(document.body.appendChild(document.createElement('div')))
-
 
 document.addEventListener('DOMContentLoaded', () => {
   root.render(
