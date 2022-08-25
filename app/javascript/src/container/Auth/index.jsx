@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { login, signUp } from '../../api/users'
 
 import loginImg from '../../assets/images/lohp_en_1302x955.png'
 import Button from '../../components/Button'
 import ModalForm from '../../components/ModalForm'
 import { loginValidate, signUpValidate } from '../../utils/validations'
+import Loader from '../../components/loader'
 
 const Login = (props) => {
   const [signUpModa, showSignUpModal] = useState(false)
-  const [LoginModa, showLoginModal] = useState(false)
+  const [loginModal, showLoginModal] = useState(false)
+  const [loading, showLoadingl] = useState(false)
   const navigate = useNavigate()
 
   const [loginFields, setLoginFields] = useState([
@@ -60,24 +63,39 @@ const Login = (props) => {
     setLoginFields(temp)
   }
 
-  const handleSignUp = () => {
+  const handleSignUp = async() => {
     const error = signUpValidate(signUpFields)
     if(error){
       return toast.error(error)
     }
-    navigate('/tweets/home')
+    showLoadingl(true)
+    const token = await signUp(signUpFields[0].value, signUpFields[1].value)
+    if(token !== 200) {
+      toast.error('Sign Up Error!')
+    }else{
+      toast.success('Registration Successful')
+    }
+    showLoadingl(false)
   }
 
-  const handleLogin = () => {
-    const error = loginValidate(signUpFields)
+  const handleLogin = async() => {
+    const error = loginValidate(loginFields)
     if(error){
       return toast.error(error)
     }
-    navigate('/tweets/home')
+
+    const token = await login(loginFields[0].value, loginFields[1].value)
+    if(!token) {
+      toast.error('Sign Up Error!')
+    }else{
+      toast.success('Login Successful')
+      navigate('/tweets/home')
+    }
   }
 
   return (
     <div className='flex flex-row'>
+      <Loader show={loading} />
       <ModalForm
         onSubmit={handleSignUp}
         fields={signUpFields}
@@ -92,7 +110,7 @@ const Login = (props) => {
         fields={loginFields}
         heading='Sign in to Twitter'
         onChange={handleChangeLogin}
-        show={LoginModa}
+        show={loginModal}
         showModal={showLoginModal}
         action='Login'
       />

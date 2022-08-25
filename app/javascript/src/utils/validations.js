@@ -16,9 +16,9 @@ export const signUpValidate = (signUpFields) => {
   return false
 }
 
-export const loginValidate = (signUpFields) => {
-  const email = signUpFields[0].value
-  const password = signUpFields[1].value
+export const loginValidate = (loginFields) => {
+  const email = loginFields[0].value
+  const password = loginFields[1].value
 
   if (!email) {
     return 'Email is required'

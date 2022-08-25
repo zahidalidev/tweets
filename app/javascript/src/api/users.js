@@ -1,20 +1,28 @@
-import instance from 'api'
+import instance from './index'
 
 import { ACCESS_TOKEN } from '../utils/constants'
 import { saveToken } from '../utils/helpers'
 
-const login = (body) => (
-  instance.post('/auth/login', {
-    email: body.email,
-    password: body.password,
-  })
-    .then(({ data }) => {
-      instance.defaults.headers.common[ACCESS_TOKEN] = data.token
-      saveToken(data.token)
-
-      return data
+export const login = (email, password) =>
+  instance
+    .post('/users/sign_in', {
+      user: { email: email, password: password },
+    })
+    .then(({headers}) => {
+      console.log(headers)
+      const token = headers.authorization
+      instance.defaults.headers.common[ACCESS_TOKEN] = token
+      saveToken(token)
+      return token
     })
     .catch(() => ({}))
-)
 
-export default login
+export const signUp = (email, password) =>
+  instance
+    .post('/users', {
+      user: { email: email, password: password },
+    })
+    .then((res) => {
+      return res.status
+    })
+    .catch(() => 422)

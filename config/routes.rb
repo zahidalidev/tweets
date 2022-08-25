@@ -5,17 +5,17 @@ Rails.application.routes.draw do
                registrations: 'api/v1/users/registrations'
              }
 
-  # namespace :api do
-  #   namespace :v1 do
-  #     get '/tweets/*b', to: 'members#show'
-  #     resources :tweets, except: %i[edit update] do
-  #       member do
-  #         post :retweet
-  #       end
-  #     end
-  #   end
-  # end
-
+  namespace :api do
+    namespace :v1 do
+      # get 'tweets', to: 'members#show'
+      resources :tweets, except: %i[edit update] do
+        member do
+          post :retweet
+        end
+      end
+    end
+  end
+#
   get '/tweets/*b', to: 'sites#index'
 
   # root to: 'api/v1/tweets#index'

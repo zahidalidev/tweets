@@ -16,3 +16,8 @@ end
 User.all.each do |user|
   10.times { Tweet.create(user: user, body: 'random') }
 end
+
+second_user = User.second
+User.first.tweets.each do |tweet|
+  Tweet.create(user: second_user, tweet_id: tweet.id, body: tweet.body)
+end
