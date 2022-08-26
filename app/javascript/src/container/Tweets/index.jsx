@@ -81,7 +81,7 @@ const Tweets = () => {
           </div>
           <div className='tweetBox'>
             <div className='flex flex-col'>
-              <div className='flex flex-row tweetbox-input'>
+              <div className='tweetbox-input'>
                 <img
                   src='https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png'
                   alt=''

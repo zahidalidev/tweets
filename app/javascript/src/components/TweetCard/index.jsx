@@ -25,7 +25,7 @@ const TweetCard = ({ tweets, handleAddReTweet, handleAddLikes }) =>
         </div>
       </div>
       <div className='pl-[60px]'>
-        <img src='https://pbs.twimg.com/media/Dgti2h0WkAEUPmT.png' alt='' />
+        <img src='https://pbs.twimg.com/media/Dgti2h0WkAEUPmT.png' alt='' className='mt-3'  />
       </div>
       <div className='tweet-info-counts flex ml-[60px] mr-[10px] mt-[10px]'>
         <div className='flex mr-[20px]'>
