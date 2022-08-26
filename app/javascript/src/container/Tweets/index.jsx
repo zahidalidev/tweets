@@ -18,7 +18,7 @@ const Tweets = () => {
     const data = await fetchTweets()
     if (data) {
       setTweets(data)
-    }else {
+    } else {
       navigate('/tweets/auth')
     }
   }
@@ -26,13 +26,10 @@ const Tweets = () => {
   const handleAddTweet = async () => {
     setLoading(true)
     const res = await addTweet(tweetBody)
-    const tempTweets = [...tweetBody]
-    tempTweets.push({
-
-    })
     if (res.status == 200) {
       toast.success('Tweet Posted')
-    }else {
+      await getAllTweets()
+    } else {
       toast.error('Error, Tweet not added')
     }
     setLoading(false)
@@ -41,20 +38,21 @@ const Tweets = () => {
   const handleAddReTweet = async (id, index) => {
     const res = await addReTweet(id)
     const tempTweets = [...tweets]
-    if(res.status == 200){
-      tempTweets[index].retweet_count  = tempTweets[index].retweet_count + 1
-    }else {
-      tempTweets[index].retweet_count  = tempTweets[index].retweet_count - 1
+    if (res.status == 200) {
+      tempTweets[index].retweet_count = tempTweets[index].retweet_count + 1
+    } else {
+      tempTweets[index].retweet_count = tempTweets[index].retweet_count - 1
     }
     setTweets(tempTweets)
   }
 
   const handleAddLikes = async (id) => {
     const res = await addLike(id)
-    if(res.status == 200){
-      tempTweets[index].likes_count  = tempTweets[index].likes_count + 1
-    }else {
-      tempTweets[index].likes_count  = tempTweets[index].likes_count - 1
+    const tempTweets = [...tweets]
+    if (res.status == 200) {
+      tempTweets[index].likes_count = tempTweets[index].likes_count + 1
+    } else {
+      tempTweets[index].likes_count = tempTweets[index].likes_count - 1
     }
     setTweets(tempTweets)
   }
@@ -209,7 +207,10 @@ const Tweets = () => {
                   <div className='flex mr-[20px]'>33</div>
                 </div>
 
-                <div onClick={() => handleAddReTweet(tweet.id, index)} className='flex mr-[20px] cursor-pointer'>
+                <div
+                  onClick={() => handleAddReTweet(tweet.id, index)}
+                  className='flex mr-[20px] cursor-pointer'
+                >
                   <svg
                     className='text-[#657786] mr-[10px] feather feather-repeat sc-dnqmqq jxshSx'
                     xmlns='http://www.w3.org/2000/svg'
@@ -228,15 +229,13 @@ const Tweets = () => {
                     <polyline points='7 23 3 19 7 15'></polyline>
                     <path d='M21 13v2a4 4 0 0 1-4 4H3'></path>
                   </svg>
-                  <div
-
-                    className='flex mr-[23px]'
-                  >
-                    {tweet.retweet_count}
-                  </div>
+                  <div className='flex mr-[23px]'>{tweet.retweet_count}</div>
                 </div>
 
-                <div className='flex mr-[20px]'>
+                <div
+                  onClick={() => handleAddLikes(tweet.id, index)}
+                  className='flex mr-[20px] cursor-pointer'
+                >
                   <svg
                     className='text-[#657786] mr-[10px] feather feather-heart sc-dnqmqq jxshSx'
                     xmlns='http://www.w3.org/2000/svg'
@@ -252,12 +251,7 @@ const Tweets = () => {
                   >
                     <path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'></path>
                   </svg>
-                  <div
-                    onClick={() => handleAddLikes(tweet.id, index)}
-                    className='flex mr-[20px] cursor-pointer'
-                  >
-                    {tweet.likes_count}
-                  </div>
+                  <div className='flex mr-[20px]'>{tweet.likes_count}</div>
                 </div>
 
                 <div className='flex mr-[20px]'>

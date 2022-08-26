@@ -1,7 +1,10 @@
 export const signUpValidate = (signUpFields) => {
-  const email = signUpFields[0].value
-  const password = signUpFields[1].value
-  const confirmPassword = signUpFields[2].value
+  const username = signUpFields[0].value
+  const email = signUpFields[1].value
+  const password = signUpFields[2].value
+  const confirmPassword = signUpFields[3].value
+
+  if (!username) return 'Username is required'
 
   if (!email) {
     return 'Email is required'

@@ -17,10 +17,10 @@ export const login = (email, password) =>
     })
     .catch(() => '')
 
-export const signUp = (email, password) =>
+export const signUp = (name, email, password) =>
   instance
     .post('/users', {
-      user: { email: email, password: password },
+      user: { name, email, password },
     })
     .then((res) => {
       return res.status

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { toast as toasty } from 'react-toastify'
 import { login, signUp } from '../../api/users'
 
 import loginImg from '../../assets/images/lohp_en_1302x955.png'
@@ -33,18 +33,24 @@ const Login = (props) => {
   const [signUpFields, setSignUpFields] = useState([
     {
       id: '0',
+      placeholder: 'Username',
+      value: '',
+      type: 'text',
+    },
+    {
+      id: '1',
       placeholder: 'Email address',
       value: '',
       type: 'email',
     },
     {
-      id: '1',
+      id: '2',
       placeholder: 'Password',
       value: '',
       type: 'password',
     },
     {
-      id: '2',
+      id: '3',
       placeholder: 'Confirm password',
       value: '',
       type: 'password',
@@ -66,14 +72,15 @@ const Login = (props) => {
   const handleSignUp = async() => {
     const error = signUpValidate(signUpFields)
     if(error){
-      return toast.error(error)
+      return toasty.error(error)
     }
     showLoadingl(true)
-    const token = await signUp(signUpFields[0].value, signUpFields[1].value)
+    const token = await signUp(signUpFields[0].value, signUpFields[1].value, signUpFields[2].value)
     if(token !== 200) {
-      toast.error('Sign Up Error!')
+      toasty.error('Sign Up Error!')
     }else{
-      toast.success('Registration Successful')
+      toasty.success('Registration Successful, you can Login')
+      showSignUpModal(false)
     }
     showLoadingl(false)
   }
@@ -81,14 +88,15 @@ const Login = (props) => {
   const handleLogin = async() => {
     const error = loginValidate(loginFields)
     if(error){
-      return toast.error(error)
+      return toasty.error(error)
     }
 
     const token = await login(loginFields[0].value, loginFields[1].value)
     if(!token) {
-      toast.error('Sign Up Error!')
+      toasty.error('Sign Up Error!')
     }else{
-      toast.success('Login Successful')
+      toasty.success('Login Successful')
+      showLoginModal(false)
       navigate('/tweets/home')
     }
   }
