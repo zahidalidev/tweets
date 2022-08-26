@@ -37,7 +37,7 @@ const TweetCard = ({ tweets, handleAddReTweet, handleAddLikes }) =>
           onClick={() => handleAddReTweet(tweet.id, index)}
           className='flex mr-[20px] cursor-pointer'
         >
-          <ArrowPathIcon className={`h-6 w-6 ${tweet.is_retweet && 'text-sky'}`} />
+          <ArrowPathIcon className={`h-6 w-6 ${tweet.is_retweet_by_user && 'text-sky'}`} />
           <div className='flex mr-[23px]'>{tweet.retweet_count}</div>
         </div>
 

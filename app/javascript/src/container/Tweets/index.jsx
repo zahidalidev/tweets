@@ -44,10 +44,10 @@ const Tweets = () => {
     const tempTweets = [...tweets]
     if (res.data == 'Retweeted successfully') {
       tempTweets[index].retweet_count = tempTweets[index].retweet_count + 1
-      tempTweets[index].is_retweet = true
+      tempTweets[index].is_retweet_by_user = true
     } else {
       tempTweets[index].retweet_count = tempTweets[index].retweet_count - 1
-      tempTweets[index].is_retweet = false
+      tempTweets[index].is_retweet_by_user = false
     }
     setTweets(tempTweets)
   }

@@ -1,12 +1,16 @@
 class TweetSerializer < ActiveModel::Serializer
-  attributes :id, :user_name, :body, :user_id, :tweet_id, :likes_count, :retweet_count, :is_liked, :is_retweet, :created_at, :updated_at
+  attributes :id, :user_name, :body, :user_id, :tweet_id, :likes_count, :retweet_count, :is_liked, :is_retweet_by_user, :created_at, :updated_at
 
   def likes_count
     object.likes.count
   end
 
   def retweet_count
-    Tweet.where(tweet_id: object.id).count
+    if object.tweet_id.present?
+      Tweet.where(tweet_id: object.tweet_id).count
+    else
+      Tweet.where(tweet_id: object.id).count
+    end
   end
 
   def user_name
@@ -17,7 +21,7 @@ class TweetSerializer < ActiveModel::Serializer
     object.liked_by?(current_user)
   end
 
-  def is_retweet
-    object.tweet_id.present?
+  def is_retweet_by_user
+    object.tweet_id.present? && (object.user == current_user)
   end
 end
