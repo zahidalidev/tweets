@@ -38,7 +38,7 @@ const Tweets = () => {
   const handleAddReTweet = async (id, index) => {
     const res = await addReTweet(id)
     const tempTweets = [...tweets]
-    if (res.status == 200) {
+    if (res.data == 'Retweeted successfully') {
       tempTweets[index].retweet_count = tempTweets[index].retweet_count + 1
     } else {
       tempTweets[index].retweet_count = tempTweets[index].retweet_count - 1
@@ -46,10 +46,10 @@ const Tweets = () => {
     setTweets(tempTweets)
   }
 
-  const handleAddLikes = async (id) => {
+  const handleAddLikes = async (id, index) => {
     const res = await addLike(id)
     const tempTweets = [...tweets]
-    if (res.status == 200) {
+    if (res.data == 'Tweet liked') {
       tempTweets[index].likes_count = tempTweets[index].likes_count + 1
     } else {
       tempTweets[index].likes_count = tempTweets[index].likes_count - 1
