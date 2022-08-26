@@ -104,6 +104,7 @@ const Login = () => {
 
   useEffect(() => {
     const token = getToken()
+    console.log('token: ', token)
     if (token) {
       navigate('/tweets/home')
     }
