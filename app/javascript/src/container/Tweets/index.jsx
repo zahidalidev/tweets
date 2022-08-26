@@ -46,7 +46,8 @@ const Tweets = () => {
       tempTweets[index].retweet_count = tempTweets[index].retweet_count + 1
       tempTweets[index].is_retweet_by_user = true
     } else {
-      tempTweets[index].retweet_count = tempTweets[index].retweet_count - 1
+      if (tempTweets[index].retweet_count > 0)
+        tempTweets[index].retweet_count = tempTweets[index].retweet_count - 1
       tempTweets[index].is_retweet_by_user = false
     }
     setTweets(tempTweets)
@@ -59,7 +60,8 @@ const Tweets = () => {
       tempTweets[index].likes_count = tempTweets[index].likes_count + 1
       tempTweets[index].is_liked = true
     } else {
-      tempTweets[index].likes_count = tempTweets[index].likes_count - 1
+      if (tempTweets[index].likes_count > 0)
+        tempTweets[index].likes_count = tempTweets[index].likes_count - 1
       tempTweets[index].is_liked = false
     }
     setTweets(tempTweets)
