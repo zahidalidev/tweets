@@ -15,7 +15,7 @@ export const login = (email, password) =>
       saveToken(token)
       return token
     })
-    .catch(() => ({}))
+    .catch(() => '')
 
 export const signUp = (email, password) =>
   instance

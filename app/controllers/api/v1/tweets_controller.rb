@@ -26,12 +26,17 @@ class Api::V1::TweetsController < Api::V1::ApiController
   def retweet
     @tweet = Tweet.find(params[:id])
 
-    @retweet = current_user.tweets.new(tweet_id: @tweet.id)
 
-    if @retweet.save
-      render json: 'Retweeted successfully', status: :ok
+    @retweet = current_user.tweets.find_or_initialize_by(tweet_id: @tweet.id)
+    if @retweet.persisted?
+      @retweet.destroy
+      render json: 'Retweet has been destroyed', status: :ok
     else
-      render json: 'unable to retweet', status: 422
+      if @retweet.save
+        render json: 'Retweeted successfully', status: :ok
+      else
+        render json: 'unable to retweet', status: 422
+      end
     end
   end
 

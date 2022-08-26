@@ -13,6 +13,7 @@ Rails.application.routes.draw do
           post :retweet
         end
       end
+      resources :likes, only: :create
     end
   end
 #

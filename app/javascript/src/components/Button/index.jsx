@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Button = ({ name, background, textColor, onSubmit }) => {
+const Button = ({ name, background, textColor, onSubmit, width='w-80' }) => {
   return (
     <div
       onClick={onSubmit}
-      className={`flex rounded-full justify-center w-80 h-12 items-center ${
+      className={`flex rounded-full justify-center ${width} h-12 items-center ${
         background && 'bg-sky hover:bg-sky-dark'
       } border border-inherit cursor-pointer`}
     >
