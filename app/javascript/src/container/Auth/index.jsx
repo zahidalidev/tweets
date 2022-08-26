@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { toast as toasty } from 'react-toastify'
+import React, { useEffect, useState } from 'react'
 import { login, signUp } from '../../api/users'
+import { toast as toasty } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
-import loginImg from '../../assets/images/lohp_en_1302x955.png'
 import Button from '../../components/Button'
-import ModalForm from '../../components/ModalForm'
+import { getToken } from '../../utils/helpers'
+import loginImg from '../../assets/images/lohp_en_1302x955.png'
 import { loginValidate, signUpValidate } from '../../utils/validations'
 import Loader from '../../components/loader'
+import ModalForm from '../../components/ModalForm'
 
-const Login = (props) => {
+const Login = () => {
   const [signUpModa, showSignUpModal] = useState(false)
   const [loginModal, showLoginModal] = useState(false)
   const [loading, showLoadingl] = useState(false)
@@ -100,6 +101,13 @@ const Login = (props) => {
       navigate('/tweets/home')
     }
   }
+
+  useEffect(() => {
+    const token = getToken()
+    if (token) {
+      navigate('/tweets/home')
+    }
+  }, [])
 
   return (
     <div className='flex flex-row'>
